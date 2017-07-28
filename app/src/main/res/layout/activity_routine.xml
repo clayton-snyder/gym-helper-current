@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TITLE"
+            android:textSize="30sp"
+            android:textAllCaps="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="hi\nsup\tsup\tsup\tsup\ndude\tdude\tdude\tdude\nwasgoinon\twasgoinon\twasgoinon\twasgoinin\nallo\tallo\tallo\tallo\tallo\nstillhere\tstillhere\tstillhere\tstillhere"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/routine_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"></ListView>
+
+</LinearLayout>

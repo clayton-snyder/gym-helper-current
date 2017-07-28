@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="pinkWater">#FFD0DE</color>
+    <color name="neonPink">#FF3DD1</color>
+    <color name="lipstick">#EA40AA</color>
+    <color name="sequim">#C0FBE7</color>
+    <color name="toothpaste">#77FED5</color>
+    <color name="thickBlue">#2206C6</color>
+</resources>

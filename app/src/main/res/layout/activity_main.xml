@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.musclegetter.MainActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/main_routine_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Routines"
+            android:gravity="center"
+            android:textSize="80dp"
+            android:background="@color/neonPink"
+            android:textColor="@color/toothpaste"/>
+
+        <TextView
+            android:id="@+id/main_exercise_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Exercises"
+            android:gravity="center"
+            android:textSize="80dp"
+            android:background="@color/sequim"
+            android:textColor="@color/lipstick"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Records"
+            android:gravity="center"
+            android:textSize="80dp"
+            android:background="@color/pinkWater"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
