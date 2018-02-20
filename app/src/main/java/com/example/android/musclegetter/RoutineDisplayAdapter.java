@@ -27,7 +27,7 @@ import static android.R.attr.id;
 import static com.example.android.musclegetter.R.id.exercise_title;
 
 /**
- * Created by zoro on 7/23/17.
+ * Created by Clayton on 7/23/17.
  */
 
 public class RoutineDisplayAdapter extends ArrayAdapter {
@@ -119,7 +119,7 @@ public class RoutineDisplayAdapter extends ArrayAdapter {
         checkBox.setOnClickListener(new OnCheckExerciseListener(currExercise));
 
 
-        // COMMENTS ON THIS CODE ARE IN THE SECTION BELOW (SAME SHIT)
+        // COMMENTS ON THIS CODE ARE IN THE SECTION BELOW
         reps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,7 +197,7 @@ public class RoutineDisplayAdapter extends ArrayAdapter {
                     }
                 });
 
-                builder.setNegativeButton("nvm", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
@@ -208,7 +208,7 @@ public class RoutineDisplayAdapter extends ArrayAdapter {
             }
         });
 
-        // COMMENTS ON THIS CODE ARE IN THE SECTION ABOVE (SAME SHIT)
+        // COMMENTS ON THIS CODE ARE IN THE SECTION ABOVE
         rest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

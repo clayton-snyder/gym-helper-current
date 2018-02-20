@@ -3,7 +3,7 @@ package com.example.android.musclegetter;
 import java.io.Serializable;
 
 /**
- * Created by zoro on 7/12/17.
+ * Created by Clayton on 7/12/17.
  */
 
 public class Exercise implements Serializable {
@@ -14,7 +14,7 @@ public class Exercise implements Serializable {
     protected String category = "NIL"; // legs, arms, shoulders, chest, back, cardio
     protected String muscleGroupPrimary = "NIL";
     protected String muscleGroupSecondary = "NIL";
-    protected String description = "no description";
+    protected String description = "No description set";
 
     private boolean checked = false; // used for completion tracking in Routine
 

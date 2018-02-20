@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import static com.example.android.musclegetter.R.layout.list_view;
 
 /**
- * Created by zoro on 7/14/17.
+ * Created by Clayton on 7/14/17.
  */
 
 public class ExerciseListActivity extends AppCompatActivity {

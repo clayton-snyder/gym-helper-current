@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="hi\nsup\tsup\tsup\tsup\ndude\tdude\tdude\tdude\nwasgoinon\twasgoinon\twasgoinon\twasgoinin\nallo\tallo\tallo\tallo\tallo\nstillhere\tstillhere\tstillhere\tstillhere"/>
+            android:text="Routine description goes here"/>
     </LinearLayout>
 
     <ListView

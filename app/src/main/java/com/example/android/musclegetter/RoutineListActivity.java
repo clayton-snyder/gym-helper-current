@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 /**
- * Created by zoro on 7/18/17.
+ * Created by Clayton on 7/18/17.
  */
 
 
@@ -82,13 +82,13 @@ public class RoutineListActivity extends AppCompatActivity {
         ArrayList<Exercise> backL = new ArrayList<>(); backL.add(rows);
         ArrayList<Exercise> cardioL = new ArrayList<>();  cardioL.add(hiit);
 
-        arms = new Routine("ARMS THING", armL, "medium", "Arms", "nice big arms u want em");
-        legs = new Routine("LEGS THANG", legL, "long", "Legs", "quads baby");
-        chest = new Routine("PUMP IT UP", chestL, "long", "Chest", "yup");
-        shoulders = new Routine("V BABY", shldL, "medium", "Shoulders", "V taper");
-        back = new Routine("SHIRT OFF", backL, "short", "Back", "sex symbol");
+        arms = new Routine("Arms Routine", armL, "medium", "Arms", "Lorem ipsum dolor sit amet...");
+        legs = new Routine("Legs Routine", legL, "long", "Legs", "Lorem ipsum dolor sit amet...");
+        chest = new Routine("Chest Routine", chestL, "long", "Chest", "Lorem ipsum dolor sit amet...");
+        shoulders = new Routine("Shoulders Routine", shldL, "medium", "Shoulders", "Lorem ipsum dolor sit amet...");
+        back = new Routine("Back Routine", backL, "short", "Back", "Lorem ipsum dolor sit amet...");
         cardio = new Routine
-                ("CAN'T STOP WON'T STOP", cardioL, "short", "Cardio", "melt stubborn belly fat");
+                ("Cardio Routine", cardioL, "short", "Cardio", "Lorem ipsum dolor sit amet...");
         extra1 = new Routine(); extra2 = new Routine(); extra3 = new Routine();
         extra4 = new Routine(); extra5 = new Routine();
 

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import static android.R.attr.start;
 
 /**
- * Created by zoro on 7/14/17.
+ * Created by Clayton on 7/14/17.
  */
 
 public class CategoryListAdapter extends ArrayAdapter {

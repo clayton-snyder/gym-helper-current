@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 /**
- * Created by zoro on 7/13/17.
+ * Created by Clayton on 7/13/17.
  */
 
 public class ExerciseListItemAdapter extends ArrayAdapter<Exercise> {

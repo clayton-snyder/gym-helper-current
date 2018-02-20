@@ -3,7 +3,7 @@ package com.example.android.musclegetter;
 import android.content.DialogInterface;
 
 /**
- * Created by zoro on 7/26/17.
+ * Created by Clayton on 7/26/17.
  */
 
 public class OnClickListenerExercise implements DialogInterface.OnClickListener {

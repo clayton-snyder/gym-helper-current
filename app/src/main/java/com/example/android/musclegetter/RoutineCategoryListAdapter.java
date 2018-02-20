@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 /**
- * Created by zoro on 7/18/17.
+ * Created by Clayton on 7/18/17.
  */
 
 public class RoutineCategoryListAdapter extends ArrayAdapter {

@@ -13,6 +13,8 @@ import static android.R.attr.id;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Currently using these hard-coded exercises and routines to fill in while all screens are made
+    // Ultimately these will be custom-created by the user.
     ArrayList<Exercise> exercises = new ArrayList<>();
     Exercise squats = new Exercise("Squat", 5, 6, 90, "Legs", "Quads", "Glutes");
     Exercise dLift = new Exercise("Deadlift", 5, 6, 90, "Legs", "Hamstrings", "Lower Back");
@@ -35,32 +37,53 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.i("ENTERED ACTIVITY: ", "MainActivity");
 
+        // Add all the dummy exercises
         exercises.add(squats); exercises.add(dLift); exercises.add(bench); exercises.add(ohp);
         exercises.add(dbOhp); exercises.add(legPress); exercises.add(calf); exercises.add(dbBench);
         exercises.add(rows); exercises.add(ezCurls); exercises.add(pushDown); exercises.add(hiit);
 
+        // Instantiate the TextView for "exercises" on the main screen
         TextView exerciseTv = (TextView) findViewById(R.id.main_exercise_view);
         exerciseTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Create an intent to open the Category List Activity
                 Intent i = new Intent(view.getContext(), CategoryListActivity.class);
+
+                // This bundle will hold the exercise list to pass to the next view
                 Bundle b = new Bundle();
+
+                // Add the exercises ArrayList to the Bundle as a serializable
                 b.putSerializable("exerciseList", exercises);
+
+                // This extra is used to inform CategoryListActivity which view the user selected
                 i.putExtra("viewClicked", "exercises");
                 i.putExtras(b);
+
+                // Finally, start the new activity
                 startActivity(i);
             }
         });
 
+        // Instantiate the TextView for "routines" on the main screen
         TextView routineTv = (TextView) findViewById(R.id.main_routine_view);
         routineTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Create an intent to open the Category List activity
                 Intent i = new Intent(view.getContext(), CategoryListActivity.class);
+
+                // This bundle will hold the exercise list to pass to the next view
                 Bundle b = new Bundle();
+
+                // Add the exercises ArrayList to the Bundle as a serializable
                 b.putSerializable("exerciseList", exercises);
+
+                // This extra is used to inform CategoryListActivity which view the user selected
                 i.putExtra("viewClicked", "routines");
                 i.putExtras(b);
+
+                // Finally, start the new activity
                 startActivity(i);
             }
         });

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by zoro on 7/14/17.
+ * Created by Clayton on 7/14/17.
  */
 
 // TODO: implement images

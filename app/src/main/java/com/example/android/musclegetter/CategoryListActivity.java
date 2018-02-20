@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by zoro on 7/13/17.
+ * Created by Clayton on 7/13/17.
  */
 
 public class CategoryListActivity extends AppCompatActivity {
@@ -37,6 +37,7 @@ public class CategoryListActivity extends AppCompatActivity {
             categories.add(categoryArray[i]);
         }
 
+        // Check the "viewClicked" extra passed through to identify which adapter to use
         if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("exercises")) {
             CategoryListAdapter adapter =
                     new CategoryListAdapter(this, categories, b);
