@@ -10,4 +10,7 @@
     <color name="sequim">#C0FBE7</color>
     <color name="toothpaste">#77FED5</color>
     <color name="thickBlue">#2206C6</color>
+
+    <color name="editorColorPrimary">#2D3640</color>
+    <color name="editorColorPrimaryDark">#394450</color>
 </resources>

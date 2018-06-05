@@ -2,6 +2,7 @@ package com.example.android.musclegetter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,8 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import com.example.android.musclegetter.Exercise;
+import com.example.android.musclegetter.data.GymContract;
+import com.example.android.musclegetter.data.GymContract.ExEntry;
+import com.example.android.musclegetter.data.GymDbHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,6 +32,9 @@ public class ExerciseListItemAdapter extends ArrayAdapter<Exercise> {
     private LayoutInflater inflater;
     protected ArrayList<Exercise> exercises;
     protected int layout;
+
+    GymDbHelper dbHelper = new GymDbHelper(getContext());
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
 
     /* "layout" parameter takes a layout for how to display the list item -- for viewing individual
                    exercises (from CategoryListActivity), use menu_list_item; for viewing exercises
@@ -83,7 +91,21 @@ public class ExerciseListItemAdapter extends ArrayAdapter<Exercise> {
             }); */
         }
 
+
+
         final int FINAL_POSITION = position;
+
+        Button button = convertView.findViewById(R.id.delete_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int idToDelete = exercises.get(FINAL_POSITION)._id;
+                db.execSQL("DELETE FROM " + ExEntry.TABLE_NAME + " WHERE " + ExEntry._ID +
+                    " = " + idToDelete + ";");
+                Intent i = new Intent(getContext(), MainActivity.class);
+                getContext().startActivity(i);
+            }
+        });
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +117,7 @@ public class ExerciseListItemAdapter extends ArrayAdapter<Exercise> {
                 view.getContext().startActivity(i);
             }
         });
+
 
         return convertView;
     }

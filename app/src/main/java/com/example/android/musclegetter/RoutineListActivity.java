@@ -24,26 +24,43 @@ public class RoutineListActivity extends AppCompatActivity {
     private ArrayList<Routine> filteredRoutines;
 
     // extra exercises for ListView scroll testing
-    Exercise e1 = new Exercise("ExtraLeg", 100, 100, 100, "Legs", "Quads", "Calves");
-    Exercise e2 = new Exercise("ExtraLeg", 100, 100, 100, "Legs", "Quads", "Calves");
-    Exercise e3 = new Exercise("ExtraLeg", 100, 100, 100, "Legs", "Quads", "Calves");
-    Exercise e4 = new Exercise("ExtraLeg", 100, 100, 100, "Legs", "Quads", "Calves");
+
+    Exercise e1 = new Exercise("ExtraLeg", "","Legs",
+            "Quads", "Calves", 10, 10, 10);
+    Exercise e2 = new Exercise("ExtraLeg", "","Legs",
+            "Quads", "Calves", 10, 10, 10);
+    Exercise e3 = new Exercise("ExtraLeg", "","Legs",
+            "Quads", "Calves", 10, 10, 10);
+    Exercise e4 = new Exercise("ExtraLeg", "","Legs",
+            "Quads", "Calves", 10, 10, 10);
+
     // end of extra exercises -- rest are srs
 
-    Exercise squats = new Exercise("Squat", 5, 6, 90, "Legs", "Quads", "Glutes");
-    Exercise dLift = new Exercise("Deadlift", 5, 6, 90, "Legs", "Hamstrings", "Lower Back");
-    Exercise bench = new Exercise("Bench Press", 5, 6, 90, "Chest", "Pecorals", "Triceps");
-    Exercise ohp = new Exercise("Overhead Press", 5, 6, 90, "Shoulders", "Shoulders", "Triceps");
-    Exercise dbOhp = new Exercise("Dumbbell Overhead Press", 6, 8, 90, "Shoulders",
-            "Shoulders", "Traps");
-    Exercise legPress = new Exercise("Leg Press", 3, 12, 90, "Legs", "Quads", "Glutes");
-    Exercise calf = new Exercise("Calf Raises", 50, 3, 60, "Legs","Calves", "Pretty much Calves");
-    Exercise dbBench = new Exercise("Dumbbell Bench Press", 3, 8, 60, "Chest",
-            "Pectorals", "Triceps");
-    Exercise rows = new Exercise("Rows", 10, 3, 75, "Back", "Lats", "Buncha other back stuff");
-    Exercise ezCurls = new Exercise("EZ Bar Curls", 10, 4, 60, "Arms", "Biceps", "Forearms");
-    Exercise pushDown = new Exercise("Tricep Pushdown", 10, 6, 60, "Arms", "Triceps", "Forearms");
-    Exercise hiit = new Exercise("HIIT", 45, 4, 90, "Cardio", "Quads", "Calves");
+    Exercise squats = new Exercise("Squat", "", "Legs",
+            "Quads", "Glutes", 5, 6, 90);
+    Exercise dLift = new Exercise("Deadlift", "", "Legs",
+            "Hamstrings", "Lower Back", 5, 6, 90);
+    Exercise bench = new Exercise("Bench Press", "", "Chest",
+            "Pecorals", "Triceps", 5, 6, 90);
+    Exercise ohp = new Exercise("Overhead Press", "", "Shoulders",
+            "Shoulders", "Triceps", 5, 6, 90);
+    Exercise dbOhp = new Exercise("Dumbbell Overhead Press", "", "Shoulders",
+            "Shoulders", "Traps", 6, 8, 90);
+    Exercise legPress = new Exercise("Leg Press", "", "Legs",
+            "Quads", "Glutes", 3, 12, 90);
+    Exercise calf = new Exercise("Calf Raises", "", "Legs",
+            "Calves", "Pretty much Calves", 50, 3, 60);
+    Exercise dbBench = new Exercise("Dumbbell Bench Press", "", "Chest",
+            "Pectorals", "Triceps", 3, 8, 60);
+    Exercise rows = new Exercise("Rows", "", "Back",
+            "Lats", "Buncha other back stuff", 10, 3, 75);
+    Exercise ezCurls = new Exercise("EZ Bar Curls", "", "Arms",
+            "Biceps", "Forearms", 10, 4, 60);
+    Exercise pushDown = new Exercise("Tricep Pushdown", "", "Arms",
+            "Triceps", "Forearms", 10, 6, 60);
+    Exercise hiit = new Exercise("HIIT", "", "Cardio",
+            "Quads", "Calves", 45, 4, 90);
+
 
     private Routine arms;
     private Routine legs;
@@ -74,6 +91,7 @@ public class RoutineListActivity extends AppCompatActivity {
                 ((ArrayList<Routine>) exerciseListBundle.getSerializable("routines")); */
         filteredRoutines = new ArrayList<>();
 
+
         ArrayList<Exercise> armL = new ArrayList<>(); armL.add(ezCurls); armL.add(pushDown);
         ArrayList<Exercise> legL = new ArrayList<>(); legL.add(squats); legL.add(dLift);
         legL.add(legPress); legL.add(calf); legL.add(e1); legL.add(e2); legL.add(e3); legL.add(e4);
@@ -81,6 +99,7 @@ public class RoutineListActivity extends AppCompatActivity {
         ArrayList<Exercise> shldL = new ArrayList<>(); shldL.add(ohp); shldL.add(dbOhp);
         ArrayList<Exercise> backL = new ArrayList<>(); backL.add(rows);
         ArrayList<Exercise> cardioL = new ArrayList<>();  cardioL.add(hiit);
+
 
         arms = new Routine("Arms Routine", armL, "medium", "Arms", "Lorem ipsum dolor sit amet...");
         legs = new Routine("Legs Routine", legL, "long", "Legs", "Lorem ipsum dolor sit amet...");
@@ -97,6 +116,7 @@ public class RoutineListActivity extends AppCompatActivity {
         routines.add(arms); routines.add(legs); routines.add(chest); routines.add(shoulders);
         routines.add(back); routines.add(cardio); routines.add(extra1); routines.add(extra2);
         routines.add(extra3); routines.add(extra4); routines.add(extra5);
+
 
         for (int i = 0; i < routines.size(); i++) {
             if (routines.get(i).getGroupWorked().equalsIgnoreCase(this.category))

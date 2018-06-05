@@ -26,13 +26,21 @@ public class CategoryListActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set the view to display a list
         setContentView(R.layout.list_view);
         Log.i("ENTERED ACTIVITY: ", "CategoryListActivity");
+
+        // Grab the bundle passed in through the Intent
         Bundle b = getIntent().getExtras();
+
+        // I think this might be unnecessary? The CategoryListAdapter grabs the exercises from
+        // the bundle b above
         exercises = (ArrayList<Exercise>) b.getSerializable("exerciseList");
 
         categories = new ArrayList();
 
+        // Eventually this categories ArrayList will be built from user stored data
         for (int i = 0; i < ARRAY_SIZE; i++) {
             categories.add(categoryArray[i]);
         }

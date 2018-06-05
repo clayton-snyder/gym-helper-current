@@ -2,31 +2,30 @@ package com.example.android.musclegetter;
 
 import java.io.Serializable;
 
-/**
- * Created by Clayton on 7/12/17.
- */
-
 public class Exercise implements Serializable {
+    protected int _id; // Matches the SQLite DB primary key
     protected String title;
-    protected int reps = -1;
-    protected int sets = -1;
-    protected int rest = -1;
+    protected String description = "No description set";
     protected String category = "NIL"; // legs, arms, shoulders, chest, back, cardio
     protected String muscleGroupPrimary = "NIL";
     protected String muscleGroupSecondary = "NIL";
-    protected String description = "No description set";
+    protected int reps = -1;
+    protected int sets = -1;
+    protected int rest = -1;
 
     private boolean checked = false; // used for completion tracking in Routine
 
-    public Exercise(String title, int reps, int sets, int rest, String category,
-                    String muscleGroupPrimary, String muscleGroupSecondary) {
+    public Exercise(String title, String description, String category, String muscleGroupPrimary,
+                    String muscleGroupSecondary, int reps, int sets, int rest)
+    {
         this.title = title;
-        this.reps = reps;
-        this.sets = sets;
-        this.rest = rest;
+        this.description = description;
         this.category = category;
         this.muscleGroupPrimary = muscleGroupPrimary;
         this.muscleGroupSecondary = muscleGroupSecondary;
+        this.reps = reps;
+        this.sets = sets;
+        this.rest = rest;
     }
 
     public String getTitle() {
@@ -56,6 +55,10 @@ public class Exercise implements Serializable {
     public String getDescription() {
         return this.description;
     }
+
+    public int getDbId() { return this._id; }
+
+    public void setDbId(int idIn) { this._id = idIn; }
 
     public void setReps(int reps) { this.reps = reps; }
 

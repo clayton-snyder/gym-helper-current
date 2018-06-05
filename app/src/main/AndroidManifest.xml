@@ -25,6 +25,8 @@
             android:label="Routines" />
         <activity android:name=".RoutineDisplayActivity"
             android:label="Routine Detail" />
+        <activity android:name=".AddExerciseActivity"
+            android:label="Add New Exercise" />
     </application>
 
 </manifest>

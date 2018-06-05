@@ -3,10 +3,6 @@ package com.example.android.musclegetter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Clayton on 7/12/17.
- */
-
 public class Routine implements Serializable {
     ArrayList<Exercise> exercises;
     String title = "EMPTY";
