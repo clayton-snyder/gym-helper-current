@@ -3,7 +3,8 @@ package com.example.android.musclegetter.data;
 import android.provider.BaseColumns;
 
 /**
- * Created by zoro on 4/5/18.
+ * Created by Clayton on 4/5/18.
+ * Contains string constants for various table column names.
  */
 
 public final class GymContract
@@ -19,18 +20,6 @@ public final class GymContract
     public static abstract class ExEntry implements BaseColumns
     {
         public final static String TABLE_NAME = "exercise";
-
-        // Category String constants
-        /* Commented out because they were moved to outside of this class (above) since
-           RoutineEntry class also uses these constants
-
-        public final static String CATEGORY_LEGS = "Legs";
-        public final static String CATEGORY_ARMS = "Arms";
-        public final static String CATEGORY_CHEST = "Chest";
-        public final static String CATEGORY_SHOULDERS = "Shoulders";
-        public final static String CATEGORY_BACK = "Back";
-        public final static String CATEGORY_CARDIO = "Cardio";
-        */
 
         // exercise table columns
         public final static String _ID = BaseColumns._ID;

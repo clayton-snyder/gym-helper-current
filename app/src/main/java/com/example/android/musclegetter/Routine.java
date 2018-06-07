@@ -7,7 +7,7 @@ public class Routine implements Serializable {
     ArrayList<Exercise> exercises;
     String title = "EMPTY";
     String approxTime; // Long, Medium, Short
-    String groupWorked = "unset"; // category for now (Arms, Legs, Shoulders, Chest, Back, Cardio)
+    String groupWorked = "Not Set"; // category for now (Arms, Legs, Shoulders, Chest, Back, Cardio)
     String description;
 
     public Routine(String title, ArrayList<Exercise> listOfExercises, String approxTime,
@@ -21,7 +21,7 @@ public class Routine implements Serializable {
 
     public Routine() {
         this.exercises = new ArrayList<>();
-        this.description = "no description";
+        this.description = "No description.";
     }
 
     public String getTitle() { return this.title; }

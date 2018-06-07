@@ -9,6 +9,7 @@ import com.example.android.musclegetter.data.GymContract.ExerciseInRoutineEntry;
 
 /**
  * Created by Clayton on 4/5/18.
+ * Contains string constants which create tables used by the app to store exercise/routine data.
  */
 
 public class GymDbHelper extends SQLiteOpenHelper
