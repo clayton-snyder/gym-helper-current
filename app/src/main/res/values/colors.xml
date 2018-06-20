@@ -11,6 +11,14 @@
     <color name="toothpaste">#77FED5</color>
     <color name="thickBlue">#2206C6</color>
 
+    <color name="seafoam">#7ac6a0</color>
+    <color name="light_seafoam">#a4dfc2</color>
+    <color name="dark_yellow">#f4c377</color>
+    <color name="light_yellow">#fedda9</color>
+    <color name="off_white">#f7ecdd</color>
+    <color name="light_gray">#7a7482</color>
+    <color name="dark_gray">#413d45</color>
+
     <color name="editorColorPrimary">#2D3640</color>
     <color name="editorColorPrimaryDark">#394450</color>
 </resources>

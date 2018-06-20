@@ -50,7 +50,7 @@ public final class GymContract
            prevents a hard limit on exercises in a routine and accommodates one exercise being in
            multiple routines.
            To delete an exercise from a routine, query for a row with "routine_id" and "exercise_id"
-           both matching values from the context with the delete button (this information shuold be
+           both matching values from the context with the delete button (this information should be
            contained in the view representing the exercise in the routine edit activity)
          */
         public final static String TABLE_NAME = "exercise_in_routine";
