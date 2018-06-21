@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- Colors of the title bar (and accents?) in the app -->
+    <color name="colorPrimary">@color/light_gray</color>
+    <color name="colorAccent">@color/pinkWater</color>
 
-    <color name="pinkWater">#FFD0DE</color>
-    <color name="neonPink">#FF3DD1</color>
-    <color name="lipstick">#EA40AA</color>
-    <color name="sequim">#C0FBE7</color>
-    <color name="toothpaste">#77FED5</color>
-    <color name="thickBlue">#2206C6</color>
+    <!-- Use these to color text views, text, etc. instead of putting the colors in directly. That
+    way experimenting with different color schemes can be done mostly from this file.-->
+    <color name="colorBackgroundMain">@color/seafoam</color>
+    <color name="colorBackgroundAccent">@color/dark_yellow</color>
+    <color name="colorText">@color/dark_gray</color>
 
+    <color name="colorBackgroundMainLight">@color/light_seafoam</color>
+    <color name="colorBackgroundAccentLight">@color/light_yellow</color>
+    <color name="colorTextLight">@color/light_gray</color>
+
+    <color name="colorPrimaryDark">@color/dark_gray</color>
+
+    <!-- Current theme colors I'm using. Taken from the Headspace "focus" pack color scheme. -->
     <color name="seafoam">#7ac6a0</color>
     <color name="light_seafoam">#a4dfc2</color>
     <color name="dark_yellow">#f4c377</color>
@@ -19,6 +25,19 @@
     <color name="light_gray">#7a7482</color>
     <color name="dark_gray">#413d45</color>
 
+    <!-- Don't know what these do. -->
     <color name="editorColorPrimary">#2D3640</color>
     <color name="editorColorPrimaryDark">#394450</color>
+
+
+
+    <!-- These colors were used in the previous design. They're pretty obnoxious, but super
+    aesthetic. Keeping them around for now as there's no specific reason to get rid of them, and I
+    might want to use them later, although they should not be used as part of the theme. -->
+    <color name="pinkWater">#FFD0DE</color>
+    <color name="neonPink">#FF3DD1</color>
+    <color name="lipstick">#EA40AA</color>
+    <color name="sequim">#C0FBE7</color>
+    <color name="toothpaste">#77FED5</color>
+    <color name="thickBlue">#2206C6</color>
 </resources>

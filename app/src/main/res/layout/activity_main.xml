@@ -19,8 +19,13 @@
             android:text="Routines"
             android:gravity="center"
             android:textSize="80dp"
-            android:background="@color/neonPink"
-            android:textColor="@color/toothpaste"/>
+            android:background="@color/colorBackgroundMain"
+            android:textColor="@color/colorText"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separator_thickness"
+            android:background="@color/colorBackgroundAccent"/>
 
         <TextView
             android:id="@+id/main_exercise_view"
@@ -30,9 +35,14 @@
             android:text="Exercises"
             android:gravity="center"
             android:textSize="80dp"
-            android:background="@color/sequim"
-            android:textColor="@color/lipstick"
+            android:background="@color/colorBackgroundMain"
+            android:textColor="@color/colorText"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separator_thickness"
+            android:background="@color/colorBackgroundAccent"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -41,7 +51,8 @@
             android:text="Records"
             android:gravity="center"
             android:textSize="80dp"
-            android:background="@color/pinkWater"/>
+            android:background="@color/colorBackgroundMain"
+            android:textColor="@color/colorText"/>
 
     </LinearLayout>
 
