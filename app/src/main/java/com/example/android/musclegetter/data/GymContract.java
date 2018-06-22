@@ -17,6 +17,11 @@ public final class GymContract
     public final static String CATEGORY_BACK = "Back";
     public final static String CATEGORY_CARDIO = "Cardio";
 
+    // Approximate time length (for routines) constants
+    public final static String TIME_LONG = "Long";
+    public final static String TIME_MEDIUM = "Medium";
+    public final static String TIME_SHORT = "Short";
+
     public static abstract class ExEntry implements BaseColumns
     {
         public final static String TABLE_NAME = "exercise";

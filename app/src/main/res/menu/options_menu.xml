@@ -8,4 +8,9 @@
         android:title="Add Exercise"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_add_routine"
+        android:title="Add Routine"
+        app:showAsAction="never" />
+
 </menu>

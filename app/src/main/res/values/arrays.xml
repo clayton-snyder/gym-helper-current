@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Options for the exercise category drop-down spinner -->
     <string-array name="array_exercise_category_options">
         <item>"Legs"</item>
@@ -9,4 +10,12 @@
         <item>"Back"</item>
         <item>"Cardio"</item>
     </string-array>
+
+    <!--  Options for the length of time a routine can take -->
+    <string-array name="array_routine_approx_time_options">
+        <item>Long</item>
+        <item>Medium</item>
+        <item>Short</item>
+    </string-array>
+
 </resources>

@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,30 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private GymDbHelper dbHelper;
     private SQLiteDatabase db;
     ArrayList<Exercise> exercises;
-
-    /* Currently using these hard-coded exercises and routines to fill in while all screens are made
-    *  Ultimately these will be custom-created by the user.
-    *  Exercise objects are put into the "exercises" ArrayList<Exercise> and passed through to other
-    *  activities which will do different things with them (i.e., "Routines" categorizes and makes
-    *  routines out of them, "Exercises" categorizes and displays them w/out creating any routines
-    *  Objects are created here to reduce redundancy in other Activity classes, but they have to be
-    *  passed through to other classes in Bundles. Eventually, all of these will be stored in
-    *  SQLite as persistent data, modifiable by the user.
-    Exercise squats = new Exercise("Squat", 5, 6, 90, "Legs", "Quads", "Glutes");
-    Exercise dLift = new Exercise("Deadlift", 5, 6, 90, "Legs", "Hamstrings", "Lower Back");
-    Exercise bench = new Exercise("Bench Press", 5, 6, 90, "Chest", "Pecorals", "Triceps");
-    Exercise ohp = new Exercise("Overhead Press", 5, 6, 90, "Shoulders", "Shoulders", "Triceps");
-    Exercise dbOhp = new Exercise("Dumbbell Overhead Press", 6, 8, 90, "Shoulders",
-            "Shoulders", "Traps");
-    Exercise legPress = new Exercise("Leg Press", 3, 12, 90, "Legs", "Quads", "Glutes");
-    Exercise calf = new Exercise("Calf Raises", 50, 3, 60, "Legs","Calves", "Pretty much Calves");
-    Exercise dbBench = new Exercise("Dumbbell Bench Press", 3, 8, 60, "Chest",
-            "Pectorals", "Triceps");
-    Exercise rows = new Exercise("Rows", 10, 3, 75, "Back", "Lats", "Buncha other back stuff");
-    Exercise ezCurls = new Exercise("EZ Bar Curls", 10, 4, 60, "Arms", "Biceps", "Forearms");
-    Exercise pushDown = new Exercise("Tricep Pushdown", 10, 6, 60, "Arms", "Triceps", "Forearms");
-    Exercise hiit = new Exercise("HIIT", 45, 4, 90, "Cardio", "Quads", "Calves");
-    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,18 +63,12 @@ public class MainActivity extends AppCompatActivity {
             Exercise exercise = new Exercise(title, description, category, groupPrimary,
                     groupSecondary, reps, sets, rest);
 
+            // Set the _id field (matches the Exercise table primary key) in the exercise object
             exercise.setDbId(c.getInt(c.getColumnIndex(ExEntry._ID)));
 
             // Add the newly constructed exercise to the Exercises ArrayList
             exercises.add(exercise);
         }
-
-        // Add all the dummy exercises
-        /*
-        exercises.add(squats); exercises.add(dLift); exercises.add(bench); exercises.add(ohp);
-        exercises.add(dbOhp); exercises.add(legPress); exercises.add(calf); exercises.add(dbBench);
-        exercises.add(rows); exercises.add(ezCurls); exercises.add(pushDown); exercises.add(hiit);
-        */
 
         // Instantiate the TextView for "exercises" on the main screen
         TextView exerciseTv = (TextView) findViewById(R.id.main_exercise_view);
@@ -147,5 +119,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu options from the res/menu/menu_catalog.xml file.
+        // This adds menu items to the app bar.
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // User clicked on a menu option in the app bar overflow menu
+        switch (item.getItemId()) {
+            case R.id.action_add_exercise:
+                Intent i = new Intent(this, AddExerciseActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.action_add_routine:
+                Intent j = new Intent(this, AddRoutineActivity.class);
+                startActivity(j);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

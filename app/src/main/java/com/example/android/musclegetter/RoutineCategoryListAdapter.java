@@ -44,7 +44,7 @@ public class RoutineCategoryListAdapter extends ArrayAdapter {
                     Intent i = new Intent(view.getContext(), RoutineListActivity.class);
                     i.putExtra("category", CATEGORY);
                     System.out.println("in intent: " + CATEGORY);
-                    Log.e("tag", "categry: " + CATEGORY);
+                    Log.e("tag", "category: " + CATEGORY);
                     view.getContext().startActivity(i);
                 }
             });
@@ -63,7 +63,6 @@ public class RoutineCategoryListAdapter extends ArrayAdapter {
                 }
             });
         }
-
         return convertView;
     }
 }

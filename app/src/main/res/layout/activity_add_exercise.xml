@@ -53,10 +53,10 @@
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
 
-            <!-- Secondary muscle group field -->
+            <!-- Auxiliary muscle group field -->
             <EditText
                 android:id="@+id/edit_group_secondary"
-                android:hint="Secondary muscle group"
+                android:hint="Auxiliary muscle group"
                 android:inputType="textCapWords"
                 style="@style/EditorFieldStyle" />
 

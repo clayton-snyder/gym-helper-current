@@ -28,13 +28,9 @@ public class Exercise implements Serializable {
         this.rest = rest;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
+    public String getTitle() { return this.title; }
 
-    public int getReps() {
-        return this.reps;
-    }
+    public int getReps() { return this.reps; }
 
     public int getSets() { return this.sets; }
 

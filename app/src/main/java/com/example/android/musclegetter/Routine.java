@@ -4,12 +4,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Routine implements Serializable {
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIELDS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /* ########################################################################################## */
     ArrayList<Exercise> exercises;
     String title = "EMPTY";
     String approxTime; // Long, Medium, Short
     String groupWorked = "Not Set"; // category for now (Arms, Legs, Shoulders, Chest, Back, Cardio)
     String description;
+    /* ####################################### END FIELDS ####################################### */
 
+
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CONSTRUCTORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /* ########################################################################################## */
     public Routine(String title, ArrayList<Exercise> listOfExercises, String approxTime,
                    String groupWorked, String description) {
         this.title = title;
@@ -23,7 +33,13 @@ public class Routine implements Serializable {
         this.exercises = new ArrayList<>();
         this.description = "No description.";
     }
+    /* #################################### END CONSTRUCTORS #################################### */
 
+
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ACCESSORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /* ########################################################################################## */
     public String getTitle() { return this.title; }
 
     public ArrayList<Exercise> getExercises() {
@@ -41,7 +57,13 @@ public class Routine implements Serializable {
     public String getDescription() {
         return this.description;
     }
+    /* ##################################### END ACCESSORS ###################################### */
 
+
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MUTATORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /* ########################################################################################## */
     public void addExercise(Exercise e) {
         this.exercises.add(e);
     }
@@ -59,4 +81,5 @@ public class Routine implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+    /* ####################################### END MUTATORS ##################################### */
 }

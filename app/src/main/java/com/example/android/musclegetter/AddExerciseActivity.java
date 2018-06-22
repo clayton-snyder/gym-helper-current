@@ -21,7 +21,7 @@ import com.example.android.musclegetter.data.GymContract.ExEntry;
 import com.example.android.musclegetter.data.GymDbHelper;
 
 /**
- * Created by zoro on 4/5/18.
+ * Created by Clayton on 4/5/18.
  */
 
 public class AddExerciseActivity extends AppCompatActivity
@@ -61,6 +61,7 @@ public class AddExerciseActivity extends AppCompatActivity
         restEditText = (EditText) findViewById(R.id.edit_rest);
 
 
+        // Set up the save button, adding click listeners to save the exercise properly
         Button saveButton = (Button) findViewById(R.id.button_save_new_exercise);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,14 +79,14 @@ public class AddExerciseActivity extends AppCompatActivity
     private void setupSpinner() {
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
-        ArrayAdapter genderSpinnerAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter categorySpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.array_exercise_category_options, android.R.layout.simple_spinner_item);
 
         // Specify dropdown layout style - simple list view with 1 item per line
-        genderSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        categorySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
         // Apply the adapter to the spinner
-        categorySpinner.setAdapter(genderSpinnerAdapter);
+        categorySpinner.setAdapter(categorySpinnerAdapter);
 
         // Set the integer mSelected to the constant values
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

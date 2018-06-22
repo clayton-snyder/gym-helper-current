@@ -12,21 +12,31 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExerciseListActivity"
+        <activity
+            android:name=".ExerciseListActivity"
             android:label="List of Exercises" />
-        <activity android:name=".ExerciseDetailActivity"
+        <activity
+            android:name=".ExerciseDetailActivity"
             android:label="Exercise Details" />
-        <activity android:name=".CategoryListActivity"
+        <activity
+            android:name=".CategoryListActivity"
             android:label="Categories" />
-        <activity android:name=".RoutineListActivity"
+        <activity
+            android:name=".RoutineListActivity"
             android:label="Routines" />
-        <activity android:name=".RoutineDisplayActivity"
+        <activity
+            android:name=".RoutineDisplayActivity"
             android:label="Routine Detail" />
-        <activity android:name=".AddExerciseActivity"
+        <activity
+            android:name=".AddExerciseActivity"
             android:label="Add New Exercise" />
+        <activity
+            android:name=".AddRoutineActivity"
+            android:label="Add New Routine" />
     </application>
 
 </manifest>
