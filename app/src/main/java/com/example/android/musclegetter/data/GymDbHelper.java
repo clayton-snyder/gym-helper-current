@@ -20,7 +20,7 @@ public class GymDbHelper extends SQLiteOpenHelper
     }
 
     public static final String SQL_CREATE_EXERCISE_TABLE =
-            "CREATE TABLE exercise(" +
+            "CREATE TABLE " + ExEntry.TABLE_NAME + "(" +
                     ExEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     ExEntry.COLUMN_EXERCISE_TITLE + " TEXT NOT NULL, " +
                     ExEntry.COLUMN_EXERCISE_DESC + " TEXT, " +
@@ -32,7 +32,7 @@ public class GymDbHelper extends SQLiteOpenHelper
                     ExEntry.COLUMN_EXERCISE_REST + " INTEGER NOT NULL DEFAULT -1);";
 
     public static final String SQL_CREATE_ROUTINE_TABLE =
-            "CREATE TABLE routine(" +
+            "CREATE TABLE " + RoutineEntry.TABLE_NAME + "(" +
                     RoutineEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     RoutineEntry.COLUMN_ROUTINE_TITLE + " TEXT NOT NULL, " +
                     RoutineEntry.COLUMN_ROUTINE_LENGTH + " TEXT, " +
@@ -40,10 +40,10 @@ public class GymDbHelper extends SQLiteOpenHelper
                     RoutineEntry.COLUMN_ROUTINE_DESCRIPTION + " TEXT);";
 
     public static final String SQL_CREATE_EXERCISES_IN_ROUTINES_TABLE =
-            "CREATE TABLE exercise_in_routine(" +
+            "CREATE TABLE " + ExerciseInRoutineEntry.TABLE_NAME + "(" +
                     ExerciseInRoutineEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    ExerciseInRoutineEntry.COLUMN_EXERCISE_ID + "INTEGER NOT NULL, " +
-                    ExerciseInRoutineEntry.COLUMN_ROUTINE_ID + " INTEGER NOT NULL;)";
+                    ExerciseInRoutineEntry.COLUMN_EXERCISE_ID + " INTEGER NOT NULL, " +
+                    ExerciseInRoutineEntry.COLUMN_ROUTINE_ID + " INTEGER NOT NULL);";
 
     public static final String DATABASE_NAME = "gym.db";
     public static int DATABASE_VERSION = 1;
@@ -59,6 +59,8 @@ public class GymDbHelper extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVerson)
     {
-        return;
+        // TODO: There's a problem here causing an issue on your device. no crash on emu
+        db.execSQL("DROP TABLE IF EXISTS routine");
+        db.execSQL(SQL_CREATE_ROUTINE_TABLE);
     }
 }

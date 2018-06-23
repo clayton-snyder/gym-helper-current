@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.android.musclegetter.data.GymContract;
+import com.example.android.musclegetter.data.GymContract.RoutineEntry;
 import com.example.android.musclegetter.data.GymDbHelper;
 
 import java.util.ArrayList;
@@ -85,13 +87,21 @@ public class AddRoutineActivity extends AppCompatActivity {
     {
         // Get a writeable reference to the routine table
         db = gymDbHelper.getWritableDatabase();
+        String title = titleEditText.getText().toString().trim();
+        String desc = descriptionEditText.getText().toString().trim();
+        routineCategory = GymContract.CATEGORY_ARMS;
+        approxTime = GymContract.TIME_MEDIUM;
 
         // Create and lode a ContentValues in preparation for record insertion to routines table
         ContentValues cv = new ContentValues();
-        cv.put(GymContract.RoutineEntry.COLUMN_ROUTINE_TITLE, titleEditText.toString());
-        cv.put(GymContract.RoutineEntry.COLUMN_ROUTINE_LENGTH, approxTime);
-        cv.put(GymContract.RoutineEntry.COLUMN_ROUTINE_CATEGORY, routineCategory);
-        cv.put(GymContract.RoutineEntry.COLUMN_ROUTINE_DESCRIPTION, descriptionEditText.toString());
+        cv.put(RoutineEntry.COLUMN_ROUTINE_TITLE, title);
+        cv.put(RoutineEntry.COLUMN_ROUTINE_LENGTH, approxTime);
+        cv.put(RoutineEntry.COLUMN_ROUTINE_CATEGORY, routineCategory);
+        cv.put(RoutineEntry.COLUMN_ROUTINE_DESCRIPTION, desc);
+
+        // TODO: This line is for testing; shouldn't do this way.
+        db.execSQL("INSERT INTO routine(title,length,category,description) VALUES (\"" + title +
+            "\",\"" + approxTime + "\",\"" + routineCategory + "\",\"" + desc + "\");");
 
         // Insert a record with info from the EditText references
         db.insert(GymContract.RoutineEntry.TABLE_NAME, null, cv);
