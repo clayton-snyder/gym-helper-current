@@ -21,10 +21,12 @@ public class CategoryListActivity extends AppCompatActivity {
 
     ArrayList<String> categories;
     ArrayList<Exercise> exercises;
+    // TODO: Place to add "core"
     String[] categoryArray = { "Arms", "Legs", "Chest", "Shoulders", "Back", "Cardio" };
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         // Set the view to display a list
@@ -41,17 +43,21 @@ public class CategoryListActivity extends AppCompatActivity {
         categories = new ArrayList();
 
         // Eventually this categories ArrayList will be built from user stored data
-        for (int i = 0; i < ARRAY_SIZE; i++) {
+        for (int i = 0; i < ARRAY_SIZE; i++)
+        {
             categories.add(categoryArray[i]);
         }
 
         // Check the "viewClicked" extra passed through to identify which adapter to use
-        if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("exercises")) {
+        if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("exercises"))
+        {
             CategoryListAdapter adapter =
                     new CategoryListAdapter(this, categories, b);
             ListView listView = (ListView) findViewById(R.id.list);
             listView.setAdapter(adapter);
-        } else if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("routines")) {
+        }
+        else if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("routines"))
+        {
             RoutineCategoryListAdapter adapter =
                     new RoutineCategoryListAdapter(this, categories, b);
             ListView listView = (ListView) findViewById(R.id.list);

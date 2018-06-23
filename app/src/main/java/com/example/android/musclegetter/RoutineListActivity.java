@@ -1,10 +1,16 @@
 package com.example.android.musclegetter;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
+
+import com.example.android.musclegetter.data.GymContract;
+import com.example.android.musclegetter.data.GymContract.RoutineEntry;
+import com.example.android.musclegetter.data.GymDbHelper;
 
 import java.util.ArrayList;
 
@@ -14,15 +20,24 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
  * Created by Clayton on 7/18/17.
  */
 
-
+/* TODO: Cleanup this file after the new list population is implemented. Remove fields, fake
+         exercises used for testing, filteredRoutines array, etc.
+ */
 
 
 public class RoutineListActivity extends AppCompatActivity {
 
-    private ArrayList<Routine> routines;
+    private ArrayList<Routine> categoryRoutines;
     private String category;
-    private ArrayList<Routine> filteredRoutines;
 
+    // Use to get a readable database to populate the routine list
+    private GymDbHelper gymDbHelper;
+
+    // Used to get a cursor to iterate over desired DB records
+    private SQLiteDatabase db;
+
+
+    // ################################## BEGIN REMOVE #############################################
     // extra exercises for ListView scroll testing
 
     Exercise e1 = new Exercise("ExtraLeg", "","Legs",
@@ -75,57 +90,60 @@ public class RoutineListActivity extends AppCompatActivity {
     private Routine extra5;
 
     private Bundle exerciseListBundle;
+    // ################################### END REMOVE #############################################
 
     private ArrayList<String> categories;
     String[] categoryArray = { "Arms", "Legs", "Chest", "Shoulders", "Back", "Cardio" };
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
         this.category = getIntent().getStringExtra("category");
-        exerciseListBundle = getIntent().getExtras();
-        Log.i("ENTERED ACTIVITY: ", "RoutineListActivity");
-        routines = new ArrayList<>();
-        /* routines = new ArrayList<>
-                ((ArrayList<Routine>) exerciseListBundle.getSerializable("routines")); */
-        filteredRoutines = new ArrayList<>();
+
+        gymDbHelper = new GymDbHelper(this);
+        db = gymDbHelper.getReadableDatabase();
 
 
-        ArrayList<Exercise> armL = new ArrayList<>(); armL.add(ezCurls); armL.add(pushDown);
-        ArrayList<Exercise> legL = new ArrayList<>(); legL.add(squats); legL.add(dLift);
-        legL.add(legPress); legL.add(calf); legL.add(e1); legL.add(e2); legL.add(e3); legL.add(e4);
-        ArrayList<Exercise> chestL = new ArrayList<>(); chestL.add(bench); chestL.add(dbBench);
-        ArrayList<Exercise> shldL = new ArrayList<>(); shldL.add(ohp); shldL.add(dbOhp);
-        ArrayList<Exercise> backL = new ArrayList<>(); backL.add(rows);
-        ArrayList<Exercise> cardioL = new ArrayList<>();  cardioL.add(hiit);
+        // Set up variables for the cursor call
+        String table = RoutineEntry.TABLE_NAME;
+        String[] columns = new String[] { "*" };
+        String selection = RoutineEntry.COLUMN_ROUTINE_CATEGORY + " =?";
+        String[] selectionArgs = new String[] { this.category };
+        String groupBy = null;
+        String having = null;
+        String orderBy = null;
+        String limit = null;
 
+        // TODO: Here, make a query for all exercises matching category from bundle
+        // Get a cursor for all records with the category passed in from the intent
+        Cursor c = db.query("routine", columns, selection, selectionArgs,
+                groupBy, having, orderBy, limit);
 
-        arms = new Routine("Arms Routine", armL, "medium", "Arms", "Lorem ipsum dolor sit amet...");
-        legs = new Routine("Legs Routine", legL, "long", "Legs", "Lorem ipsum dolor sit amet...");
-        chest = new Routine("Chest Routine", chestL, "long", "Chest", "Lorem ipsum dolor sit amet...");
-        shoulders = new Routine("Shoulders Routine", shldL, "medium", "Shoulders", "Lorem ipsum dolor sit amet...");
-        back = new Routine("Back Routine", backL, "short", "Back", "Lorem ipsum dolor sit amet...");
-        cardio = new Routine
-                ("Cardio Routine", cardioL, "short", "Cardio", "Lorem ipsum dolor sit amet...");
-        extra1 = new Routine(); extra2 = new Routine(); extra3 = new Routine();
-        extra4 = new Routine(); extra5 = new Routine();
+        categoryRoutines = new ArrayList<>();
 
+        // Use the cursor to populate the routines list with routines of given category
+        while (c.moveToNext())
+        {
+            String title = c.getString(c.getColumnIndex(RoutineEntry.COLUMN_ROUTINE_TITLE));
+            String approxTime = c.getString(c.getColumnIndex(RoutineEntry.COLUMN_ROUTINE_LENGTH));
+            // Don't get category since we know what it is based on the WHERE clause
+            String desc = c.getString(c.getColumnIndex(RoutineEntry.COLUMN_ROUTINE_DESCRIPTION));
 
+            // Build the routine with the variables populated by the cursor
+            Routine builtFromRecord = new Routine();
+            builtFromRecord.setTitle(title);
+            builtFromRecord.setApproxTime(approxTime);
+            builtFromRecord.setGroupWorked(category);
+            builtFromRecord.setDescription(desc);
 
-        routines.add(arms); routines.add(legs); routines.add(chest); routines.add(shoulders);
-        routines.add(back); routines.add(cardio); routines.add(extra1); routines.add(extra2);
-        routines.add(extra3); routines.add(extra4); routines.add(extra5);
-
-
-        for (int i = 0; i < routines.size(); i++) {
-            if (routines.get(i).getGroupWorked().equalsIgnoreCase(this.category))
-                filteredRoutines.add(routines.get(i));
+            // Add the routine to the list
+            categoryRoutines.add(builtFromRecord);
         }
 
-        RoutineListAdapter adapter = new RoutineListAdapter(this, filteredRoutines);
+        RoutineListAdapter adapter = new RoutineListAdapter(this, categoryRoutines);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
-
     }
 }

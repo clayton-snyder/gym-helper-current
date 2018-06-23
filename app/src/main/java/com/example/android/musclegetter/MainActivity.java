@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         int sets;
         int rest;
 
+
+        /* ############################ BAD GET RID OF THIS!!! ################################## */
+        // Why do this? There must have been a reason?
+        // TODO: replace this: instead, populate a list after category has been selected
         while (c.moveToNext())
         {
             title = c.getString(c.getColumnIndex(ExEntry.COLUMN_EXERCISE_TITLE));
@@ -69,8 +73,13 @@ public class MainActivity extends AppCompatActivity {
             // Add the newly constructed exercise to the Exercises ArrayList
             exercises.add(exercise);
         }
+        /* ########################### END STUFF TO GET RID OF ################################## */
 
-        // Instantiate the TextView for "exercises" on the main screen
+
+
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EXERCISES text view ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
         TextView exerciseTv = (TextView) findViewById(R.id.main_exercise_view);
         exerciseTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
 
                 // Add the exercises ArrayList to the Bundle as a serializable
+                // TODO: Remove this part if you change how you populate exercise list from the DB
                 b.putSerializable("exerciseList", exercises);
 
                 /* This extra is used to inform CategoryListActivity which view the user selected
@@ -94,8 +104,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        /* ########################### END EXERCISES text view ################################## */
 
-        // Instantiate the TextView for "routines" on the main screen
+
+
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ROUTINES text view ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
         TextView routineTv = (TextView) findViewById(R.id.main_routine_view);
         routineTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
 
                 // Add the exercises ArrayList to the Bundle as a serializable
+                // TODO: Remove this part if you change how you populate exercise list from the DB
                 b.putSerializable("exerciseList", exercises);
 
                 /* This extra is used to inform CategoryListActivity which view the user selected
@@ -119,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        /* ############################ END ROUTINES text view ################################## */
     }
 
     @Override

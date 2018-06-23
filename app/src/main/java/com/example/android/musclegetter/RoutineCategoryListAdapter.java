@@ -18,11 +18,13 @@ import java.util.ArrayList;
  * Created by Clayton on 7/18/17.
  */
 
-public class RoutineCategoryListAdapter extends ArrayAdapter {
+public class RoutineCategoryListAdapter extends ArrayAdapter
+{
     private LayoutInflater inflater;
     private Bundle exerciseListBundle;
 
-    public RoutineCategoryListAdapter(Context context, ArrayList<String> categories, Bundle b) {
+    public RoutineCategoryListAdapter(Context context, ArrayList<String> categories, Bundle b)
+    {
         super(context, R.layout.list_view, categories);
         inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.exerciseListBundle = b;
@@ -31,9 +33,10 @@ public class RoutineCategoryListAdapter extends ArrayAdapter {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        if (convertView == null) {
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+    {
+        if (convertView == null)
+        {
             convertView = inflater.inflate(R.layout.menu_list_item, parent, false);
             TextView tv = convertView.findViewById(R.id.menu_list_item_title);
             tv.setText((CharSequence) getItem(position));
@@ -48,7 +51,9 @@ public class RoutineCategoryListAdapter extends ArrayAdapter {
                     view.getContext().startActivity(i);
                 }
             });
-        } else {
+        }
+        else
+        {
             TextView tv = convertView.findViewById(R.id.menu_list_item_title);
             tv.setText((CharSequence) getItem(position));
             final String CATEGORY = (String) getItem(position);
