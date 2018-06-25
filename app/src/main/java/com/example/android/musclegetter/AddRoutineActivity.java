@@ -56,6 +56,8 @@ public class AddRoutineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_routine);
 
+        Log.i("ENTERED ACTIVITY: ", "AddRoutineActivity");
+
         gymDbHelper = new GymDbHelper(this);
 
         // Initialize all of the necessary object references
@@ -89,19 +91,13 @@ public class AddRoutineActivity extends AppCompatActivity {
         db = gymDbHelper.getWritableDatabase();
         String title = titleEditText.getText().toString().trim();
         String desc = descriptionEditText.getText().toString().trim();
-        routineCategory = GymContract.CATEGORY_ARMS;
-        approxTime = GymContract.TIME_MEDIUM;
 
-        // Create and lode a ContentValues in preparation for record insertion to routines table
+        // Create and load a ContentValues in preparation for record insertion to routines table
         ContentValues cv = new ContentValues();
         cv.put(RoutineEntry.COLUMN_ROUTINE_TITLE, title);
         cv.put(RoutineEntry.COLUMN_ROUTINE_LENGTH, approxTime);
         cv.put(RoutineEntry.COLUMN_ROUTINE_CATEGORY, routineCategory);
         cv.put(RoutineEntry.COLUMN_ROUTINE_DESCRIPTION, desc);
-
-        // TODO: This line is for testing; shouldn't do this way.
-        db.execSQL("INSERT INTO routine(title,length,category,description) VALUES (\"" + title +
-            "\",\"" + approxTime + "\",\"" + routineCategory + "\",\"" + desc + "\");");
 
         // Insert a record with info from the EditText references
         db.insert(GymContract.RoutineEntry.TABLE_NAME, null, cv);
@@ -125,17 +121,17 @@ public class AddRoutineActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
-                    if (selection.equals("Legs")) {
+                    if (selection.equalsIgnoreCase("Legs")) {
                         routineCategory = GymContract.CATEGORY_LEGS;
-                    } else if (selection.equals("Arms")) {
+                    } else if (selection.equalsIgnoreCase("Arms")) {
                         routineCategory = GymContract.CATEGORY_ARMS;
-                    } else if (selection.equals("Chest")) {
+                    } else if (selection.equalsIgnoreCase("Chest")) {
                         routineCategory = GymContract.CATEGORY_CHEST;
-                    } else if (selection.equals("Shoulders")) {
+                    } else if (selection.equalsIgnoreCase("Shoulders")) {
                         routineCategory = GymContract.CATEGORY_SHOULDERS;
-                    } else if (selection.equals("Back")) {
+                    } else if (selection.equalsIgnoreCase("Back")) {
                         routineCategory = GymContract.CATEGORY_BACK;
-                    } else if (selection.equals("Cardio")) {
+                    } else if (selection.equalsIgnoreCase("Cardio")) {
                         routineCategory = GymContract.CATEGORY_CARDIO;
                     } else {
                         routineCategory = "Not set";
@@ -164,7 +160,7 @@ public class AddRoutineActivity extends AppCompatActivity {
         approxTimeSpinner.setAdapter(approxTimeAdapter);
 
         // Define the behavior for when an item is selected
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        approxTimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
@@ -186,6 +182,4 @@ public class AddRoutineActivity extends AppCompatActivity {
             }
         });
     }
-
-    // TODO: write insertRoutine
 }
