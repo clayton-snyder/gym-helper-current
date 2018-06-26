@@ -59,7 +59,7 @@ public class GymDbHelper extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVerson)
     {
-        // TODO: There's a problem here causing an issue on your device. no crash on emu
+        // TODO: This doesn't work properly. Have to reinstall if there's a schema change.
         db.execSQL("DROP TABLE IF EXISTS routine");
         db.execSQL(SQL_CREATE_ROUTINE_TABLE);
     }

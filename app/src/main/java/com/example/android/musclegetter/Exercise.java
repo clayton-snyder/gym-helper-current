@@ -2,7 +2,8 @@ package com.example.android.musclegetter;
 
 import java.io.Serializable;
 
-public class Exercise implements Serializable {
+public class Exercise implements Serializable
+{
     protected int _id; // Matches the SQLite DB primary key
     protected String title;
     protected String description = "No description set";
@@ -18,6 +19,7 @@ public class Exercise implements Serializable {
     public Exercise(String title, String description, String category, String muscleGroupPrimary,
                     String muscleGroupSecondary, int reps, int sets, int rest)
     {
+        this._id = -1;
         this.title = title;
         this.description = description;
         this.category = category;

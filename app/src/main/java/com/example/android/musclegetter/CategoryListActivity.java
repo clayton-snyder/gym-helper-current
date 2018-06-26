@@ -49,17 +49,16 @@ public class CategoryListActivity extends AppCompatActivity {
         }
 
         // Check the "viewClicked" extra passed through to identify which adapter to use
-        if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("exercises"))
-        {
-            CategoryListAdapter adapter =
-                    new CategoryListAdapter(this, categories, b);
-            ListView listView = (ListView) findViewById(R.id.list);
-            listView.setAdapter(adapter);
-        }
-        else if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("routines"))
+        if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("routines"))
         {
             RoutineCategoryListAdapter adapter =
                     new RoutineCategoryListAdapter(this, categories, b);
+            ListView listView = (ListView) findViewById(R.id.list);
+            listView.setAdapter(adapter);
+        }
+        else // They tapped "exercises" or this is from "Add an exercise to this routine"
+        {
+            CategoryListAdapter adapter = new CategoryListAdapter(this, categories, b);
             ListView listView = (ListView) findViewById(R.id.list);
             listView.setAdapter(adapter);
         }

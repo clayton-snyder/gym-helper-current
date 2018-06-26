@@ -138,7 +138,7 @@ public class ExerciseListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
         // This adds menu items to the app bar.
-        getMenuInflater().inflate(R.menu.options_menu, menu);
+        getMenuInflater().inflate(R.menu.options_menu_main, menu);
         return true;
     }
 
@@ -148,7 +148,7 @@ public class ExerciseListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_add_exercise:
-                Intent i = new Intent(this, AddExerciseActivity.class);
+                Intent i = new Intent(this, CategoryListActivity.class);
                 startActivity(i);
                 return true;
         }

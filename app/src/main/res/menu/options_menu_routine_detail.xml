@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ExerciseListActivity">
+
+    <item
+        android:id="@+id/action_add_exercise_to_routine"
+        android:title="Add an exercise to this routine"
+        app:showAsAction="never" />
+
+</menu>

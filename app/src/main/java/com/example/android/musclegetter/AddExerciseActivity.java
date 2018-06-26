@@ -165,6 +165,4 @@ public class AddExerciseActivity extends AppCompatActivity
         return true;
 
     }
-
-
 }

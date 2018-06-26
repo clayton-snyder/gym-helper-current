@@ -25,7 +25,8 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
  */
 
 
-public class RoutineListActivity extends AppCompatActivity {
+public class RoutineListActivity extends AppCompatActivity
+{
 
     private ArrayList<Routine> categoryRoutines;
     private String category;
@@ -116,9 +117,8 @@ public class RoutineListActivity extends AppCompatActivity {
         String orderBy = null;
         String limit = null;
 
-        // TODO: Here, make a query for all exercises matching category from bundle
         // Get a cursor for all records with the category passed in from the intent
-        Cursor c = db.query("routine", columns, selection, selectionArgs,
+        Cursor c = db.query(RoutineEntry.TABLE_NAME, columns, selection, selectionArgs,
                 groupBy, having, orderBy, limit);
 
         categoryRoutines = new ArrayList<>();
@@ -141,7 +141,6 @@ public class RoutineListActivity extends AppCompatActivity {
             // Add the routine to the list
             categoryRoutines.add(builtFromRecord);
         }
-
         RoutineListAdapter adapter = new RoutineListAdapter(this, categoryRoutines);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);

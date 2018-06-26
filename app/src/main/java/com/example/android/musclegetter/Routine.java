@@ -3,16 +3,18 @@ package com.example.android.musclegetter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Routine implements Serializable {
+public class Routine implements Serializable
+{
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIELDS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     /* ########################################################################################## */
-    ArrayList<Exercise> exercises;
-    String title = "EMPTY";
-    String approxTime; // Long, Medium, Short
-    String groupWorked = "Not Set"; // category for now (Arms, Legs, Shoulders, Chest, Back, Cardio)
-    String description;
+    protected int _id; // Matches the SQLite DB primary key
+    protected ArrayList<Exercise> exercises;
+    protected String title = "EMPTY";
+    protected String approxTime; // Long, Medium, Short
+    protected String groupWorked = "Not Set"; // category for now (Arms, Legs, Shoulders, Chest, Back, Cardio)
+    protected String description;
     /* ####################################### END FIELDS ####################################### */
 
 
@@ -21,7 +23,9 @@ public class Routine implements Serializable {
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CONSTRUCTORS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     /* ########################################################################################## */
     public Routine(String title, ArrayList<Exercise> listOfExercises, String approxTime,
-                   String groupWorked, String description) {
+                   String groupWorked, String description)
+    {
+        this._id = -1;
         this.title = title;
         this.exercises = new ArrayList<>(listOfExercises);
         this.approxTime = approxTime;
@@ -29,7 +33,8 @@ public class Routine implements Serializable {
         this.description = description;
     }
 
-    public Routine() {
+    public Routine()
+    {
         this.exercises = new ArrayList<>();
         this.description = "No description.";
     }
@@ -57,6 +62,8 @@ public class Routine implements Serializable {
     public String getDescription() {
         return this.description;
     }
+
+    public int getDbId() { return this._id; }
     /* ##################################### END ACCESSORS ###################################### */
 
 
@@ -67,6 +74,8 @@ public class Routine implements Serializable {
     public void addExercise(Exercise e) {
         this.exercises.add(e);
     }
+
+    public void setDbId(int idIn) { this._id = idIn; }
 
     public void setTitle(String title) { this.title = title; }
 
