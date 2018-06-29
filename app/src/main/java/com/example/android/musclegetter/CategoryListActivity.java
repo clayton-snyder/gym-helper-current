@@ -21,6 +21,14 @@ public class CategoryListActivity extends AppCompatActivity {
 
     ArrayList<String> categories;
     ArrayList<Exercise> exercises;
+
+    // Is the user trying to add an exercise to a routine?
+    public Boolean addingToRoutine;
+
+    // Stores the DbId of a routine the user is attempting to add an exercise to. If not applicable,
+    // initialized to -1
+    int routineDbId;
+
     // TODO: Place to add "core"
     String[] categoryArray = { "Arms", "Legs", "Chest", "Shoulders", "Back", "Cardio" };
 
@@ -28,6 +36,8 @@ public class CategoryListActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        addingToRoutine = getIntent().getBooleanExtra("addingToRoutine", false);
+        this.routineDbId = getIntent().getIntExtra("routineDbId", -1);
 
         // Set the view to display a list
         setContentView(R.layout.list_view);
@@ -35,9 +45,12 @@ public class CategoryListActivity extends AppCompatActivity {
 
         // Grab the bundle passed in through the Intent
         Bundle b = getIntent().getExtras();
+        b.putBoolean("addingToRoutine", this.addingToRoutine);
+        b.putInt("routineDbId", this.routineDbId);
 
         // I think this might be unnecessary? The CategoryListAdapter grabs the exercises from
         // the bundle b above
+        // TODO: Investigate if this should be removed
         exercises = (ArrayList<Exercise>) b.getSerializable("exerciseList");
 
         categories = new ArrayList();
@@ -48,19 +61,31 @@ public class CategoryListActivity extends AppCompatActivity {
             categories.add(categoryArray[i]);
         }
 
-        // Check the "viewClicked" extra passed through to identify which adapter to use
-        if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("routines"))
+        // First, check if we got here from the user tapping "Add an exercise to this routine"
+        // NOTE: defaults to false if this extra doesn't exist
+        if (getIntent().getBooleanExtra("addingToRoutine", false))
         {
+            // The adapter handles onClick behavior by reading variables from this context
             RoutineCategoryListAdapter adapter =
-                    new RoutineCategoryListAdapter(this, categories, b);
+            new RoutineCategoryListAdapter(this, categories, b);
             ListView listView = (ListView) findViewById(R.id.list);
             listView.setAdapter(adapter);
         }
-        else // They tapped "exercises" or this is from "Add an exercise to this routine"
+        else
         {
-            CategoryListAdapter adapter = new CategoryListAdapter(this, categories, b);
-            ListView listView = (ListView) findViewById(R.id.list);
-            listView.setAdapter(adapter);
+            if (getIntent().getStringExtra("viewClicked").equalsIgnoreCase("routines"))
+            {
+                RoutineCategoryListAdapter adapter =
+                        new RoutineCategoryListAdapter(this, categories, b);
+                ListView listView = (ListView) findViewById(R.id.list);
+                listView.setAdapter(adapter);
+            }
+            else // They tapped "exercises"
+            {
+                CategoryListAdapter adapter = new CategoryListAdapter(this, categories, b);
+                ListView listView = (ListView) findViewById(R.id.list);
+                listView.setAdapter(adapter);
+            }
         }
     }
 }

@@ -35,11 +35,9 @@ public class ExerciseListActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(list_view);
-        Log.i("ENTERED ACTIVITY: ", "ExerciseListActivity");
+
         this.category = getIntent().getStringExtra("category");
-        Bundle exerListBundle = getIntent().getExtras();
-        this.exercises = new ArrayList<Exercise>
-                ((ArrayList<Exercise>) exerListBundle.getSerializable("exerciseList"));
+        Bundle b = getIntent().getExtras();
 
         dbHelper = new GymDbHelper(this);
         db = dbHelper.getWritableDatabase();
@@ -89,7 +87,7 @@ public class ExerciseListActivity extends AppCompatActivity {
         // exercise_menu_list_item is used here because this is the individual exercises menu
         ExerciseListItemAdapter listAdapter =
                 new ExerciseListItemAdapter(this, filteredExercises,
-                        R.layout.exercise_menu_list_item);
+                        R.layout.exercise_menu_list_item, b);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(listAdapter);
     }

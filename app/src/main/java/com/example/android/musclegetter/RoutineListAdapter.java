@@ -21,16 +21,20 @@ import java.util.zip.Inflater;
 
 public class RoutineListAdapter extends ArrayAdapter {
     private LayoutInflater inflater;
+    private ArrayList<Routine> routines;
     private String category;
 
-    RoutineListAdapter(Context context, ArrayList<Routine> routines) {
+    RoutineListAdapter(Context context, ArrayList<Routine> routines)
+    {
         super(context, R.layout.list_view, routines);
         inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.routines = routines;
     }
 
-    public View getView(int position, @Nullable View contentView, @NonNull ViewGroup parent) {
-
-        if (contentView == null) {
+    public View getView(int position, @Nullable View contentView, @NonNull ViewGroup parent)
+    {
+        if (contentView == null)
+        {
             contentView = inflater.inflate(R.layout.menu_list_item, parent, false);
             TextView tv = contentView.findViewById(R.id.menu_list_item_title);
             tv.setText(((Routine) getItem(position)).getTitle());
@@ -44,7 +48,9 @@ public class RoutineListAdapter extends ArrayAdapter {
                     getContext().startActivity(i);
                 }
             });
-        } else {
+        }
+        else
+        {
             TextView tv = contentView.findViewById(R.id.menu_list_item_title);
             tv.setText(((Routine) getItem(position)).getTitle());
             tv.setTextSize(30);
@@ -61,5 +67,4 @@ public class RoutineListAdapter extends ArrayAdapter {
 
         return contentView;
     }
-
 }

@@ -1,5 +1,6 @@
 package com.example.android.musclegetter;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,8 +15,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.android.musclegetter.Exercise;
-import com.example.android.musclegetter.data.GymContract;
+import com.example.android.musclegetter.data.GymContract.ExerciseInRoutineEntry;
 import com.example.android.musclegetter.data.GymContract.ExEntry;
 import com.example.android.musclegetter.data.GymDbHelper;
 
@@ -33,24 +36,37 @@ public class ExerciseListItemAdapter extends ArrayAdapter<Exercise> {
     protected ArrayList<Exercise> exercises;
     protected int layout;
 
-    GymDbHelper dbHelper = new GymDbHelper(getContext());
-    SQLiteDatabase db = dbHelper.getWritableDatabase();
+    private Boolean addingToRoutine;
+    private int routineDbId;
+
+    // Used to create/open and return references to the SQLite database
+    GymDbHelper dbHelper;
+
+    // Used to hold readable or writeable references to the database
+    SQLiteDatabase db;
 
     /* "layout" parameter takes a layout for how to display the list item -- for viewing individual
                    exercises (from CategoryListActivity), use menu_list_item; for viewing exercises
                    as part of a routine, use exercise_list_item */
-    public ExerciseListItemAdapter(Context context, List<Exercise> exercises, int layout) {
+    public ExerciseListItemAdapter(Context context, List<Exercise> exercises, int layout, Bundle b)
+    {
         super(context, R.layout.list_view, exercises);
         this.exercises = new ArrayList<>(exercises);
         this.layout = layout;
         Log.i("INSTANTIATED ADAPTER: ", "ExerciseListItemAdapter");
         inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        this.addingToRoutine = b.getBoolean("addingToRoutine");
+        this.routineDbId = b.getInt("routineDbId", -1);
+
+        this.dbHelper = new GymDbHelper(getContext());
+        db = dbHelper.getWritableDatabase();
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+    {
         if (convertView == null) {
             convertView = inflater.inflate(layout, parent, false);
 
@@ -80,15 +96,6 @@ public class ExerciseListItemAdapter extends ArrayAdapter<Exercise> {
                 tv.setTextSize(30);
                 tv.setGravity(Gravity.CENTER_VERTICAL);
             }
-
-            /*
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(view.getContext(), ExerciseDetailActivity.class);
-                    view.getContext().startActivity(i);
-                }
-            }); */
         }
 
 
@@ -110,15 +117,36 @@ public class ExerciseListItemAdapter extends ArrayAdapter<Exercise> {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(view.getContext(), ExerciseDetailActivity.class);
-                Bundle exerciseBundle = new Bundle();
-                exerciseBundle.putSerializable("exercise", getItem(FINAL_POSITION));
-                i.putExtras(exerciseBundle);
-                view.getContext().startActivity(i);
+                if (addingToRoutine)
+                {
+                    addExerciseIdToRoutine(exercises.get(FINAL_POSITION).getDbId(), routineDbId);
+                    Toast toast;
+                    String toastTxt;
+                    toastTxt = "Successfully added exercise " +
+                            exercises.get(FINAL_POSITION).getTitle() + " to routine.";
+                    toast = Toast.makeText(getContext(), toastTxt, Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                else
+                {
+                    Intent i = new Intent(view.getContext(), ExerciseDetailActivity.class);
+                    Bundle exerciseBundle = new Bundle();
+                    exerciseBundle.putSerializable("exercise", getItem(FINAL_POSITION));
+                    i.putExtras(exerciseBundle);
+                    view.getContext().startActivity(i);
+                }
             }
         });
-
-
         return convertView;
+    }
+
+    private void addExerciseIdToRoutine(int exerciseDbIdIn, int routineDbIdIn)
+    {
+        ContentValues cv = new ContentValues();
+
+        cv.put(ExerciseInRoutineEntry.COLUMN_EXERCISE_ID, exerciseDbIdIn);
+        cv.put(ExerciseInRoutineEntry.COLUMN_ROUTINE_ID, routineDbIdIn);
+
+        db.insert(ExerciseInRoutineEntry.TABLE_NAME, null, cv);
     }
 }

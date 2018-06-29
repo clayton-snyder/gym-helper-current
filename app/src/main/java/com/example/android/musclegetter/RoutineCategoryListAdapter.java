@@ -22,13 +22,19 @@ public class RoutineCategoryListAdapter extends ArrayAdapter
 {
     private LayoutInflater inflater;
     private Bundle exerciseListBundle;
+    private Boolean addingToRoutine;
+    private int routineDbId;
 
     public RoutineCategoryListAdapter(Context context, ArrayList<String> categories, Bundle b)
     {
         super(context, R.layout.list_view, categories);
         inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.exerciseListBundle = b;
+        this.addingToRoutine = b.getBoolean("addingToRoutine");
+        this.routineDbId = b.getInt("routineDbId", -1);
         Log.i("INSTANTIATED ADAPTER: ", "RoutineCategoryListAdapter");
+        Log.e("after constructed id:", routineDbId + "");
+        Log.e("addingToRoutine?", this.addingToRoutine + "");
     }
 
     @NonNull
@@ -44,11 +50,21 @@ public class RoutineCategoryListAdapter extends ArrayAdapter
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(view.getContext(), RoutineListActivity.class);
-                    i.putExtra("category", CATEGORY);
-                    System.out.println("in intent: " + CATEGORY);
-                    Log.e("tag", "category: " + CATEGORY);
-                    view.getContext().startActivity(i);
+                    if (addingToRoutine)
+                    {
+                        Intent i = new Intent(view.getContext(), ExerciseListActivity.class);
+                        i.putExtra("category", CATEGORY);
+                        i.putExtra("addingToRoutine", addingToRoutine);
+                        i.putExtra("routineDbId", routineDbId);
+                        view.getContext().startActivity(i);
+
+                    }
+                    else
+                    {
+                        Intent i = new Intent(view.getContext(), RoutineListActivity.class);
+                        i.putExtra("category", CATEGORY);
+                        view.getContext().startActivity(i);
+                    }
                 }
             });
         }
@@ -60,11 +76,21 @@ public class RoutineCategoryListAdapter extends ArrayAdapter
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(view.getContext(), RoutineListActivity.class);
-                    i.putExtra("category", CATEGORY);
-                    System.out.println("on intent: " + CATEGORY);
-                    Log.e("tag", "category: " + CATEGORY);
-                    view.getContext().startActivity(i);
+                    if (addingToRoutine)
+                    {
+                        Intent i = new Intent(view.getContext(), ExerciseListActivity.class);
+                        i.putExtra("category", CATEGORY);
+                        i.putExtra("addingToRoutine", addingToRoutine);
+                        i.putExtra("routineDbId", routineDbId);
+                        view.getContext().startActivity(i);
+
+                    }
+                    else
+                    {
+                        Intent i = new Intent(view.getContext(), RoutineListActivity.class);
+                        i.putExtra("category", CATEGORY);
+                        view.getContext().startActivity(i);
+                    }
                 }
             });
         }

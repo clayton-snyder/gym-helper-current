@@ -126,6 +126,8 @@ public class RoutineListActivity extends AppCompatActivity
         // Use the cursor to populate the routines list with routines of given category
         while (c.moveToNext())
         {
+            // Create variables to hold the data from the DB record to build the routine object
+            int dbId = c.getInt(c.getColumnIndex((RoutineEntry._ID)));
             String title = c.getString(c.getColumnIndex(RoutineEntry.COLUMN_ROUTINE_TITLE));
             String approxTime = c.getString(c.getColumnIndex(RoutineEntry.COLUMN_ROUTINE_LENGTH));
             // Don't get category since we know what it is based on the WHERE clause
@@ -133,6 +135,7 @@ public class RoutineListActivity extends AppCompatActivity
 
             // Build the routine with the variables populated by the cursor
             Routine builtFromRecord = new Routine();
+            builtFromRecord.setDbId(dbId);
             builtFromRecord.setTitle(title);
             builtFromRecord.setApproxTime(approxTime);
             builtFromRecord.setGroupWorked(category);
